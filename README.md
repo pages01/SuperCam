@@ -4,9 +4,11 @@ SuperCam is a local-first, single-page camera experiment designed to run from Gi
 
 ## Deploy / run
 
-A GitHub Actions workflow is included at `.github/workflows/pages.yml`. After GitHub Pages is configured for this repository with **Build and deployment → Source: GitHub Actions**, pushes to `main` will deploy the site. The workflow also attempts the standard Pages setup through the official `actions/configure-pages` action.
+**One-time setup:** open [SuperCam → Settings → Pages](https://github.com/pages01/SuperCam/settings/pages). Under **Build and deployment**, set **Source** to **GitHub Actions** and save. The GitHub Actions token connected here cannot create the repository's Pages site setting on its own.
 
-The expected GitHub Pages URL is: https://pages01.github.io/SuperCam/
+After Pages is enabled, the workflow at `.github/workflows/pages.yml` deploys on pushes to `main`. If the workflow already failed because Pages was not configured, use **Actions → Deploy SuperCam to GitHub Pages → Run workflow** after enabling the setting.
+
+Expected site URL: https://pages01.github.io/SuperCam/
 
 For local testing, serve `index.html` from localhost or HTTPS, grant camera permission, choose a capture mode, then use the settings panel. Directly opening the HTML as a `file://` URL may block camera access.
 
