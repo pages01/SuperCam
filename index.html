@@ -45,7 +45,7 @@
 const $=id=>document.getElementById(id),video=$('video'),preview=$('preview'),empty=$('empty'),status=$('status'),shutter=$('shutter');
 let stream=null,facing='environment',zoom=1,mode='photo',nightBoost=false,recording=null,chunks=[],lastBlob=null,lastUrl=null,shots=[],wakeLock=null,gridOn=false,flashOn=false,starting=false,stabilizationOn=true; let hardwareControls={};
 function say(s){status.textContent=s}
-function setZoom(z){zoom=Math.max(1,Math.min(5,z));preview.style.setProperty('--zoom',zoom);document.querySelectorAll('.zoom').forEach(b=>b.classList.toggle('selected',Math.abs(Number(b.dataset.zoom)-zoom)<.08));$('zoomRow').querySelectorAll('.zoom').forEach(b=>b.classList.toggle('selected',Math.abs(Number(b.dataset.zoom)-zoom)<.08));}
+function setZoom(z){zoom=Math.max(1,Math.min(5,z));preview.style.setProperty('--zoom',zoom);if($('quickZoom'))$('quickZoom').value=String(zoom);if($('zoomPreset'))$('zoomPreset').value=String(zoom);}
 function stopCamera(){if(stream){stream.getTracks().forEach(t=>t.stop());stream=null}video.srcObject=null;empty.classList.remove('hide');$('flip').disabled=true}
 async function startCamera(){if(starting)return;starting=true;$('start').disabled=true;say('Requesting camera permission…');try{
  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)throw new Error('Camera access is unavailable here. Open SuperCam in Safari over its HTTPS website, not a preview inside another app.');
